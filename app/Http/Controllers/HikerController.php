@@ -99,6 +99,6 @@ class HikerController extends Controller
      */
     public function destroy(Hiker $hiker)
     {
-        //
+        //test
     }
 }
