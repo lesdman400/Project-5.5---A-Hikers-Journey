@@ -13,10 +13,10 @@
         </div>
         <!-- TODO Generate dynamically based on all trails available for user -->
         <p class="col-12 col-md-4">
-            AT - 2018 
-            </br> PCT     - 2022 
-            </br> CDT     - TBD
-            </br> NH48 4k - 36/48
+            @foreach  ($trailList as $trailed)
+                {{$trailed->trail_name}} - {{preg_split("/-/",$trailed->trail_end_date)[0]}}
+                </br>
+            @endforeach  
         </p>
     </div>
     <div class="row section__overflow section__overflow-hidden">

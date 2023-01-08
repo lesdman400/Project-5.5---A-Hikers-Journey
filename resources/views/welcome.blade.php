@@ -68,7 +68,7 @@
                                     {{$tmpHiker->trail_name}}
                                 </div>
                                 <div class="ml-1">
-                                    <a href="{{route('trails.show', $tmpHiker->trail_id)}}"> {{$tmpHiker->name}} </a>
+                                    <a href="{{route('trails.show', $tmpHiker->trail_uuid)}}"> {{$tmpHiker->trail_name}} </a>
                                 </div>
                             </div>
                         </div>

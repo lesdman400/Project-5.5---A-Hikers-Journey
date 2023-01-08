@@ -131,17 +131,20 @@
             ></x-text-input>
             <x-input-error :messages="$errors->get('lighter_pack_url')" class="mt-2" />
 
-            <x-input-label for="garming_map_url">
-            {{__('Garmin Map URL') }}:
+            <x-input-label for="garmin_map_url">
+            {{__('Garmin Map URL (Map Name)') }}:
             </x-input-label>
-            <x-text-input
-                id="garming_map_url"
-                name="garming_map_url"
-                value="{{$trail->garming_map_url}}"
-                placeholder='{{__("Enter Your Garmin Map URL")}}'
-                class="p-1 w-full ml-5"
-            ></x-text-input>
-            <x-input-error :messages="$errors->get('garming_map_url')" class="mt-2" />
+            <div class="flex flex-row ml-5 w-full">
+                <div class="self-center">https://share.garmin.com/</div>
+                <x-text-input
+                    id="garmin_map_url"
+                    name="garmin_map_url"
+                    value="{{$trail->garmin_map_url}}"
+                    placeholder='{{__("Enter Your Garmin Map Name")}}'
+                    class="p-1 w-full"
+                ></x-text-input>
+            </div>
+            <x-input-error :messages="$errors->get('garmin_map_url')" class="mt-2" />
            
             <br/>
             <x-primary-button class="mt-4">{{__('Update Trail')}}</x-primary-button>

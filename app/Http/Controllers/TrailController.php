@@ -20,7 +20,7 @@ const DEFAULT_VALIDATION = array(
     'instagram_map_img_url' => 'string|nullable',
     'fitbit_url' => 'string|nullable',
     'lighter_pack_url' => 'string|nullable',
-    'garming_map_url' => 'string|nullable');
+    'garmin_map_url' => 'string|nullable');
 class TrailController extends Controller
 {
     /**
@@ -59,6 +59,7 @@ class TrailController extends Controller
         // $filePath = 'Trails\'' . $request->user()->user_uuid . $request->user()->user_uuid . $validated["trail_uuid"];
         // $path = $request->file('trail_about_img_url')->store($filePath);
         $validated['trail_about_img_url'] = $path;
+        
         $request->user()->trails()->create($validated);
 
         return redirect(route('trails.index'));
@@ -73,11 +74,17 @@ class TrailController extends Controller
     public function show($trailUUID)
     {
 
+        
         $trail = DB::table('users')
         ->join('hikers','users.id','=','hikers.user_id')
         ->join('trails','users.id','=','trails.user_id')
-        ->select('users.name as userName','hikers.hiker_about','hikers.profile_img_url','trails.*')
+        ->select('users.id as userID','users.name as userName','hikers.hiker_trail_name','hikers.hiker_about','hikers.profile_img_url','trails.*')
         ->where('trails.trail_uuid',$trailUUID)
+        ->get();
+        
+        $trailList = DB::table('trails')
+        ->select('trails.trail_name', 'trails.trail_end_date')
+        ->where('trails.user_id',$trail[0]->userID)
         ->get();
 
         $trailNotes = DB::table('trail_notes')
@@ -93,7 +100,7 @@ class TrailController extends Controller
 
         // return $trail;
 
-        return view('trails.show',['trail'=>$trail,'trailNotes' => $trailNotes]);
+        return view('trails.show',['trail'=>$trail,'trailNotes' => $trailNotes, 'trailList' => $trailList]);
     }
 
     /**
@@ -128,6 +135,7 @@ class TrailController extends Controller
             $path = $request->file('trail_about_img_url')->store('trail_about_img_url');
             $validated['trail_about_img_url'] = $path;
         }
+
 
         $trail->update($validated);
 

@@ -6,5 +6,5 @@
         While you will not see Bubs exact location, you may use the below to see his last check in! 
         </br> He will be carrying a Garmin Mini Inreach 2, and will periodically send location data to be updated below
     </p> 
-    <iframe class="section-mapshare__iframe" src="{{$trail[0]->garmin_map_url}}" frameborder="0" marginwidth="0" marginheight="0" width="810" height="760"></iframe> 
+    <iframe class="section-mapshare__iframe" src="https://share.garmin.com/{{$trail[0]->garmin_map_url}}" onerror="alert('Failed')" frameborder="0" marginwidth="0" marginheight="0" width="810" height="760"></iframe> 
 </section>

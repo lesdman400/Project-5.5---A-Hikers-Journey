@@ -33,7 +33,7 @@ class WelcomeController extends Controller
                         ->join('hikers','users.id','=','hikers.user_id')
                         ->join('trails','users.id','=','trails.user_id')
                         ->select('users.name as userName','hikers.*','trails.*')
-                        ->where('trail_name',$request->trailName)
+                        ->where('hiker_trail_name',$request->trailName)
                         ->get();
 
         // return $request;

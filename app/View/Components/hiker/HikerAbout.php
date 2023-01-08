@@ -7,15 +7,16 @@ use Illuminate\View\Component;
 class HikerAbout extends Component
 {
     public $trail;
+    public $trailList;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($trail)
+    public function __construct($trail, $trailList)
     {
-        //
         $this->trail = $trail;
+        $this->trailList = $trailList;
     }
 
     /**
